@@ -1,0 +1,24 @@
+
+{
+  "name": "poputchik-ufa",
+  "version": "10.3.1",
+  "description": "An example module to illustrate the usage of a package.json",
+  "author": "Ilnur Ibatullin <ilnuribat@gmail.com>",
+  "contributors": [{
+    "name": "ilnuribat",
+    "email": "ilnuribat@gmail.com"
+  }],
+  "main": "server.js",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/ilnuribat/poputchik-ufa.git"
+},
+  "dependencies": {
+    "primus": "*",
+    "async": "~0.8.0",
+    "express": "4.2.x",
+    "winston": "git://github.com/flatiron/winston#master",
+    "bigpipe": "bigpipe/pagelet",
+    "plates": "https://github.com/flatiron/plates/tarball/master"
+  }
+}
