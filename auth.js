@@ -19,7 +19,24 @@ var generateNewID = function () {
 
 //После открытия приложения посылается запрос 
 //на создание идентификатора для новго оборудования
-Var.app.post("/getGeneratedId", function(request, response) {
-	//по хорошему нужно создать отдельное приложение на с++, которые генерирует случайный ключ
-	response.send("asdf");
+Var.app.get("/generatedId", function(request, response) {
+    //по хорошему нужно создать отдельное приложение на с++, которые генерирует случайный ключ
+    var checkID = function () {
+        var ID = generateNewID();
+        sql.main("INSERT INTO auth_users(generated_id) VALUES(" + ID + ");", function (error, body) {
+            if (error) {
+                checkID();
+            } else {
+                var answerBody = {
+                    result: "success",
+                    description: "success creating new device ID",
+                    body: {
+                        "id": ID
+                    }
+                }
+                response.send(JSON.stringify(answerBody));
+            }
+        });
+    }
+    checkID();
 });
