@@ -3,25 +3,25 @@ var connectionSQL = null;
 var sqlData;
 
 var main = function (query, callback) {
-  connectionSQL = Var.mysql.createConnection( {
-    host: 'localhost', 
-    port: 3306,
-    database: 'server',
-    user: 'root', 
-    password: '1234'
-  });
+    connectionSQL = Var.mysql.createConnection( {
+        host: 'localhost', 
+        port: 3306,
+        database: 'poputchik_ufa',
+        user: 'root', 
+        password: '1234'
+    });
   
-  connectionSQL.connect(function(error) {
-    if(error != null) {
-      console.log('Error connecting to mySql:' + error + '\n');
-    }
-  });
+    connectionSQL.connect(function(error) {
+        if(error != null) {
+            console.log('Error connecting to mySql:' + error + '\n');
+        }
+    });
   
-  connectionSQL.query(query, function(error, rows){
-    callback(error, rows);
-  });
+    connectionSQL.query(query, function(error, rows){
+        callback(error, rows);
+    });
   
-  connectionSQL.end();  
+    connectionSQL.end();  
 };
 
 exports.main = main;

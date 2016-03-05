@@ -10,7 +10,7 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `auth_users` (
-	`id_user` INT NOT NULL PRIMARY KEY,
+	`id_user` INT PRIMARY KEY,
 	`generated_id` VARCHAR(10) UNIQUE,
 	`hash` TEXT,
 	FOREIGN KEY (`id_user`) REFERENCES `users`(`id`)
