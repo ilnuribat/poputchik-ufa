@@ -19,11 +19,12 @@ var generateNewID = function () {
 
 //После открытия приложения посылается запрос 
 //на создание идентификатора для новго оборудования
-Var.app.get("/generatedId", function(request, response) {
+Var.app.get("/generateId", function(request, response) {
     //по хорошему нужно создать отдельное приложение на с++, которые генерирует случайный ключ
     var checkID = function () {
         var ID = generateNewID();
-        sql.main("INSERT INTO auth_users(generated_id) VALUES(" + ID + ");", function (error, body) {
+        var query = "INSERT INTO auth_users(generated_id) VALUES('" + ID + "');";
+        sql.main(query, function (error, body) {
             if (error) {
                 checkID();
             } else {
@@ -39,4 +40,30 @@ Var.app.get("/generatedId", function(request, response) {
         });
     }
     checkID();
+});
+
+
+//После того, как пользователь получил от нас GID, он хочет зарегаться
+Var.app.post("/createUser", function (request, response) {
+    var body = request.body;
+    var phone = body.phone;
+    var generatedID = body.generatedID;
+    if (!generatedID) {
+        var answer = {
+            error: "some params is missing",
+            description: "generatedID is missing"
+        }
+        response.send(JSON.stringify(answer));
+        return;
+    }
+    var regEXPPhone = phone.match(/9[\d]{9,9}/);
+    if (regEXPPhone === null) {
+        var answer = {
+            error: "wrong phone number format",
+            description: "Неверный формат номера телефона"
+        }
+        response.send(JSON.stringify(answer));
+    }
+
+    response.send("test");
 });
