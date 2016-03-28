@@ -11,8 +11,12 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `auth_users` (
+<<<<<<< HEAD
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
 	`generated_id` VARCHAR(10) UNIQUE,
+=======
+	`generated_id` VARCHAR(10) PRIMARY KEY,
+>>>>>>> e6036f1cdc85295513c47ef8edb239faec24ec08
 	`id_user` INT,
 	`hash` TEXT,
 	FOREIGN KEY (`id_user`) REFERENCES `users`(`id`)
